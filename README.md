@@ -1,44 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Udacity | MyReads: A Book Tracking App
 
-## Available Scripts
+## Deployment from master:
+>   https://sunnypuri.github.io/udacity-book-tracking-app/#/
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+* `fork this repository`
+* `git clone <repository-url>` this repository
+* `cd udacity-book-tracking-app`
+* `npm install`
+* `npm run start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Backend Server
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+For backend server udacity provided a file [`BooksAPI.js`](src/BooksAPI.js) it contains the methods which will be needed to perform necessary operations on the backend:
 
-### `npm test`
+* [`getAll`](#getall)
+* [`update`](#update)
+* [`search`](#search)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `getAll`
 
-### `npm run build`
+Method Signature:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+getAll()
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+* Returns a Promise which resolves to a JSON object containing a collection of book objects.
+* This collection represents the books currently in the bookshelves in your app.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `update`
 
-### `npm run eject`
+Method Signature:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```js
+update(book, shelf)
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* book: `<Object>` containing at minimum an `id` attribute
+* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
+* Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `search`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Method Signature:
 
-## Learn More
+```js
+search(query)
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* query: `<String>`
+* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
+* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Important
+The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
+
+## Join the development:
+
+* Before you start contributing, run the app on your local machine, get familiar with it and then check for bugs 
+or more features.
+* If you find any bug or want to add a new feature you have to open a new issue.
+* If you would like to work on an existing issue, drop in a comment on the issue.
